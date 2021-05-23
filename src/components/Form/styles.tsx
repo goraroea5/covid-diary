@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import TextField from "@material-ui/core/TextField";
+import { KeyboardDateTimePicker } from "@material-ui/pickers";
 
 export const FromDetail = styled.div`
   width: 100%;
@@ -40,3 +41,21 @@ export const StyledTextField  = styled(TextField)`
     visibility: hidden;
   }
 `;
+
+export const StyledDatepicker = styled(KeyboardDateTimePicker)`
+  background-color: white;
+  border-radius: 6px;
+  padding: 0 10px;
+  .MuiInput-underline:before {
+    visibility: hidden;
+  }
+  /* hover (double-ampersand needed for specificity reasons. */
+  && .MuiInput-underline:hover:before {
+    visibility: hidden;
+  }
+  /* focused */
+  .MuiInput-underline:after {
+    visibility: hidden;
+  }
+`;
+
