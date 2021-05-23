@@ -1,40 +1,69 @@
-import React from 'react';
-import {Grid, TextField, Button} from '@material-ui/core'
+import React, {useState, FormEvent} from 'react';
+import { useDispatch } from 'react-redux'
+import moment, {Moment} from 'moment'
+import { addEventTimeline } from '../../store/libs/storeSlice'
+import {Grid, Button} from '@material-ui/core';
+import { KeyboardDateTimePicker } from "@material-ui/pickers";
 import {Add} from '@material-ui/icons';
 
-import { FromTimeLine } from './styles';
+import { FromTimeLine, StyledTextField, StyledDatepicker } from './styles';
 
-const detailTimeLine = () => {
+const DetailTimeLine:React.FC = () => {
+  const dispatch = useDispatch()
+
+  const [date, setDate] = useState<Moment | null>(moment())
+  const [event, setEvent] = useState<String>('')
+  
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const payload = {
+      date: date?.format('L'),
+      time: date?.format('HH:mm'),
+      event: event
+    }
+    dispatch(addEventTimeline(payload))
+  }
+
   return (
     <FromTimeLine>
-      <div className="container">
-        <h3>ข้อมูลไทมไลน์</h3>
-        <Grid spacing={4}  container>
-          <Grid item xs={12} >
-            <label>วันเวลา</label>
-            <TextField
-              fullWidth
-              type="datetime-local"
-              defaultValue="2017-05-24T10:30"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+      <form onSubmit={handleSubmit}>
+        <div className="container">
+          <Grid spacing={2} justify="space-between" container >
+            <Grid item xs={12}>
+              <h3>ข้อมูลไทมไลน์</h3>
+            </Grid>
+            <Grid item xs={12} >
+              <label>วันเวลา</label>
+              <StyledDatepicker
+                fullWidth
+                name="date"
+                ampm={false}
+                value={date}
+                onChange={(newValue) => setDate(newValue)}
+                onError={console.log}
+                format="DD/MM/yyyy HH:mm"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <label>รายละเอียดเพิ่มเติม</label>
+              <StyledTextField
+                fullWidth
+                multiline
+                rows={11}
+                rowsMax={25}
+                name="event"
+                value={event}
+                onChange={(e) => setEvent(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Button type="submit" variant="contained" startIcon={<Add />} >เพิ่มข้อมูล</Button>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <label>รายละเอียดเพิ่มเติม</label>
-            <TextField
-              fullWidth
-              multiline
-              rows={6}
-              rowsMax={20}
-            />
-          </Grid>
-        </Grid>
-      </div>
-      <Button variant="contained" startIcon={<Add />} >เพิ่มข้อมูล</Button>
+        </div>
+      </form>
     </FromTimeLine>
   )
 }
 
-export default detailTimeLine;
+export default DetailTimeLine;

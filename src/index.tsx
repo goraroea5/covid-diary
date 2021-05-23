@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import DateMomentUtils from '@date-io/moment';
+import {  MuiPickersUtilsProvider  } from "@material-ui/pickers";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './store/store';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <MuiPickersUtilsProvider utils={DateMomentUtils}>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </MuiPickersUtilsProvider>,
   document.getElementById('root')
 );
 

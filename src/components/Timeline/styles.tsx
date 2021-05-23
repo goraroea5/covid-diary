@@ -14,15 +14,20 @@ export const TimeLineStyled = styled.div`
       color: #ffc107;
     }
     .title .title-detail {
-      width: 300px;
+      width: calc(60% - 20px);
       height: 70px;
       margin: 0 auto;
       text-align: center;
       border-radius: 60px;
       background-color:#ffc107;
     }
+    .title .title-detail h3{
+      font-weight: 400;
+
+    }
     .date {
       color: #ffc107;
+      display: inline-block;
     }
 `;
 
