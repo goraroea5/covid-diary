@@ -33,7 +33,7 @@ const timeLineSlice = createSlice({
           }]
         }]
         const pre = [...preData, ...timelines]
-        const sortDate = pre.sort((a,b) => (moment(a.date).format('YYYYMMDD') as any) - <any>moment(b.date).format('YYYYMMDD'))
+        const sortDate = pre.sort((a,b) => (moment(a.date).format('YYYYMMDD') as any) - (moment(b.date).format('YYYYMMDD') as any))
         return [...sortDate]
         
       }
