@@ -1,6 +1,5 @@
-import moment, {Moment} from 'moment'
+import moment,{ Moment } from 'moment'
 import { createSlice, current } from '@reduxjs/toolkit';
-import { time } from 'console';
 
 
 export interface DateType {
@@ -9,18 +8,12 @@ export interface DateType {
 }
 interface EventType {
   time: String,
-  event: String
+  event: String,
+  created: String
 }
 
 const initialState: DateType[] = [
-  {
-    date: moment().format('L'),
-    events: [{
-      time: '16:00',
-      event: 'Test'
-    }]
-  }
-
+  
 ]
 
 const timeLineSlice = createSlice({
@@ -37,18 +30,20 @@ const timeLineSlice = createSlice({
           date: addDate,
           events: [{
             time: addTime,
-            event: action.payload.event
+            event: action.payload.event,
+            created: moment().format()
           }]
         }]
         const pre = [...preData, ...timelines]
-        const sortDate = pre.sort((a,b) => <any>moment(a.date).format('YYYYMMDD') - <any>moment(b.date).format('YYYYMMDD'))
+        const sortDate = pre.sort((a,b) => (moment(a.date).format('YYYYMMDD') as any) - <any>moment(b.date).format('YYYYMMDD'))
         return [...sortDate]
         
       }
       else {
         const event = {
           time: addTime,
-          event: action.payload.event
+          event: action.payload.event,
+          created: moment().format()
         }
         const data ={
           events: [...checkDate.events, event]
@@ -63,8 +58,27 @@ const timeLineSlice = createSlice({
       }
     },
     deleteEventTimeline: (state, action) => {
-      console.log('action', action);
-      
+      const payload = action.payload
+      const timelines = current(state)
+      const filterDay =  timelines.filter(timeline => timeline.date !== payload.date)
+      const checkDate = timelines.find((timeline) => timeline.date === payload.date)
+      if (checkDate) {
+        const checkTime = checkDate.events.filter(event =>  event.created !== payload.event.created || event.time !== payload.event.time )
+        console.log('checkTime', checkTime);
+        if (checkTime.length > 0) {
+          const newData = {events : [...checkTime]}
+          const result = {
+            ...checkDate,
+            events: [...newData.events]
+          }
+          const dataReturn = [...filterDay, result]
+          return [...dataReturn]
+        }
+        else {
+          console.log('filterDay',filterDay);
+          return [...filterDay]
+        }
+      }
       return [...state]
     }
   }

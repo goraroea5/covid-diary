@@ -1,27 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { Timeline ,TimelineOppositeContent, TimelineItem,TimelineSeparator,TimelineDot,TimelineConnector ,TimelineContent } from '@material-ui/lab'
 import { deleteEventTimeline, getTimeline } from '../../store/libs/storeSlice'
 import CloseIcon from '@material-ui/icons/Close';
 import { TimeLineStyled, TimelineDate } from './styles';
 
-const TimelineUI = () => {
+const TimelineUI:React.FC = () => {
   const timelines = useSelector(getTimeline)
+  const dispatch = useDispatch()
   console.log('timelines',timelines);
-
-  interface timeline {
-    
-  }
-
-  const deleteEventTimeline = (timeline:any, time:any) => {
-    console.log(timeline,time);
+  
+  const handleDeleteEvent= (timeline:any, time:any) => {
     const sendToReducer = {
       date: timeline.date,
-      time: time.time
+      event: time
     }
-    console.log('sendToReducer',sendToReducer);
-    
+    dispatch(deleteEventTimeline(sendToReducer))
   }
   
   return (
@@ -50,9 +45,9 @@ const TimelineUI = () => {
                   {
                     timeline.events.map((event: any) => {
                       return (
-                        <div className="event">
+                        <div className="event" key={event.created}>
                           <p><span>{event.time}</span>{event.event}</p>
-                          <CloseIcon fontSize="small" onClick={() => deleteEventTimeline(timeline, event)} />
+                          <CloseIcon className="icon" fontSize="small" onClick={() => handleDeleteEvent(timeline, event)} />
                         </div>
                       )
                     })

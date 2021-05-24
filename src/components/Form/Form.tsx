@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid } from '@material-ui/core'
 
 import DetailForm from './DetailForm';
 import DetailTimeline from './DetailTimeline';
 
-const Form =() => {
+const Form:React.FC =() => {
+  const [profile, setProfile] = useState({
+    sex: '',
+    age: 0,
+    job: ''
+  })
+
   return (
     <Grid container direction="column" spacing={3}>
       <Grid item xs={12}>

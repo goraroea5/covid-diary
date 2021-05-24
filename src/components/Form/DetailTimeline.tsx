@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux'
 import moment, {Moment} from 'moment'
 import { addEventTimeline } from '../../store/libs/storeSlice'
 import {Grid, Button} from '@material-ui/core';
-import { KeyboardDateTimePicker } from "@material-ui/pickers";
 import {Add} from '@material-ui/icons';
 
 import { FromTimeLine, StyledTextField, StyledDatepicker } from './styles';
@@ -16,6 +15,7 @@ const DetailTimeLine:React.FC = () => {
   
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    setEvent('')
     const payload = {
       date: date?.format('L'),
       time: date?.format('HH:mm'),
@@ -57,7 +57,7 @@ const DetailTimeLine:React.FC = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type="submit" variant="contained" startIcon={<Add />} >เพิ่มข้อมูล</Button>
+              <Button type="submit" variant="contained" color="primary" startIcon={<Add />}>เพิ่มข้อมูล</Button>
             </Grid>
           </Grid>
         </div>
