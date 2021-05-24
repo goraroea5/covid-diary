@@ -7,10 +7,10 @@ export const FromDetail = styled.div`
   height: 100%;
   padding: 20px;
   border-radius: 10px;
-  background-color: rgb(187, 199, 212, 0.5);
+  background-color:#234973;
   color: white;
   h3 {
-    color: #bbc7d4
+    color: #27a740;
   }
 `;
 
@@ -21,7 +21,10 @@ export const FromTimeLine = styled.div`
   padding: 20px;
   border-radius: 10px;
   color: white;
-  background-color: rgb(187, 199, 212, 0.5);
+  background-color: #234973;
+  h3 {
+    color: #27a740;
+  }
 `;
 
 

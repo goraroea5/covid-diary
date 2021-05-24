@@ -1,9 +1,11 @@
-import React ,{ useState } from 'react'
+import React from 'react';
 import { Grid,Select, MenuItem} from '@material-ui/core';
 
 import { FromDetail, StyledTextField } from './styles';
 
-const detailForm:React.FC = () => {
+const detailForm = (props: any): JSX.Element => {
+  console.log('detailForm', props);
+  
   return (
     <div>
       <FromDetail>

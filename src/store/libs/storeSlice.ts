@@ -1,4 +1,4 @@
-import moment,{ Moment } from 'moment'
+import moment from 'moment'
 import { createSlice, current } from '@reduxjs/toolkit';
 
 
@@ -12,9 +12,7 @@ interface EventType {
   created: String
 }
 
-const initialState: DateType[] = [
-  
-]
+const initialState: DateType[] = [];
 
 const timeLineSlice = createSlice({
   name: 'Timelines',
