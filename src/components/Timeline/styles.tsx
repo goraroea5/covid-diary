@@ -29,6 +29,9 @@ export const TimeLineStyled = styled.div`
       color: #ffc107;
       display: inline-block;
     }
+    .icon {
+      cursor: pointer;
+    }
 `;
 
 export const TimelineDate = styled.div`

@@ -3,17 +3,35 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import DateMomentUtils from '@date-io/moment';
 import {  MuiPickersUtilsProvider  } from "@material-ui/pickers";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';  
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#fff',
+      main: '#ffc107',
+    },
+    secondary: {
+      main: '#f44336',
+    },
+    text: {
+      primary: '#FFF'
+    }
+  },
+});
+
 ReactDOM.render(
-  <MuiPickersUtilsProvider utils={DateMomentUtils}>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </MuiPickersUtilsProvider>,
+  <MuiThemeProvider theme = { theme }>
+    <MuiPickersUtilsProvider utils={DateMomentUtils}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MuiPickersUtilsProvider>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
 
