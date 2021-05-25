@@ -62,7 +62,6 @@ const timeLineSlice = createSlice({
       const checkDate = timelines.find((timeline) => timeline.date === payload.date)
       if (checkDate) {
         const checkTime = checkDate.events.filter(event =>  event.created !== payload.event.created || event.time !== payload.event.time )
-        console.log('checkTime', checkTime);
         if (checkTime.length > 0) {
           const newData = {events : [...checkTime]}
           const result = {
@@ -73,7 +72,6 @@ const timeLineSlice = createSlice({
           return [...dataReturn]
         }
         else {
-          console.log('filterDay',filterDay);
           return [...filterDay]
         }
       }

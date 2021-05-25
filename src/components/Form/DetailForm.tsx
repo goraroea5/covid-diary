@@ -14,9 +14,7 @@ interface Props {
   setProfile?: any
 }
 
-
 const detailForm = (props: Props): JSX.Element => {
-  console.log('detailForm', props);
   const {profile, setProfile} = props
   const handleChangeSex = (event: React.ChangeEvent<{ value: unknown }>) => {
     const payload = {sex: event.target.value}
