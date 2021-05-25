@@ -16,8 +16,7 @@ interface Props {
 
 const TimelineUI = (props: Props): JSX.Element => {
   const { sex, age, job } = props.profile
-
-  const timelines = useSelector(getTimeline)
+  const timelines = useSelector(getTimeline)  
   const dispatch = useDispatch()
   const handleDeleteEvent = (timeline: any, time: any) => {
     const sendToReducer = {

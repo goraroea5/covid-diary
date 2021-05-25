@@ -81,6 +81,6 @@ const timeLineSlice = createSlice({
 })
 
 export const { addEventTimeline, deleteEventTimeline } = timeLineSlice.actions
-export const getTimeline = (state:any) => state.Timelines; 
+export const getTimeline = (state:any) => state.persistedReducer.Timelines; 
 
 export default timeLineSlice.reducer;

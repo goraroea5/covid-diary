@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core'
 
 import Form from './components/Form/Form';
@@ -17,6 +17,17 @@ function App() {
     age: 0,
     job: ''
   })
+
+  useEffect(() => {
+    const data = localStorage.getItem("Profile")
+    if (data) {
+      setProfile(JSON.parse(data))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('Profile', JSON.stringify(profile))
+  },)
 
   return (
     <div className="App">
