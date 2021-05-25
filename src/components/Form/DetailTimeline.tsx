@@ -7,9 +7,8 @@ import {Add} from '@material-ui/icons';
 
 import { FromTimeLine, StyledTextField, StyledDatepicker } from './styles';
 
-const DetailTimeLine:React.FC = () => {
+const DetailTimeLine = () :JSX.Element=> {
   const dispatch = useDispatch()
-
   const [date, setDate] = useState<Moment | null>(moment())
   const [event, setEvent] = useState<String>('')
   
@@ -56,8 +55,8 @@ const DetailTimeLine:React.FC = () => {
                 onChange={(e) => setEvent(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained" color="primary" startIcon={<Add />}>เพิ่มข้อมูล</Button>
+            <Grid item xs={12} sm={12} md={4} >
+              <Button type="submit" variant="contained" color="primary" fullWidth startIcon={<Add />}>เพิ่มข้อมูล</Button>
             </Grid>
           </Grid>
         </div>

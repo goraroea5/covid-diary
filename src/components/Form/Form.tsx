@@ -9,7 +9,7 @@ const Form = (props: any): JSX.Element => {
   return (
     <Grid container direction="column" spacing={3}>
       <Grid item xs={12}>
-        <DetailForm profile={props.profile} />
+        <DetailForm profile={props.profile} setProfile={props.setProfile} />
       </Grid>
       <Grid item xs={12}>
         <DetailTimeline />

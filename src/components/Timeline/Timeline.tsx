@@ -1,9 +1,9 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import moment from 'moment'
 import { Timeline, TimelineOppositeContent, TimelineItem, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from '@material-ui/lab'
 import { deleteEventTimeline, getTimeline } from '../../store/libs/storeSlice'
 import CloseIcon from '@material-ui/icons/Close';
+import { Grid } from '@material-ui/core'
 import { TimeLineStyled, TimelineDate } from './styles';
 
 interface Props {
@@ -31,10 +31,12 @@ const TimelineUI = (props: Props): JSX.Element => {
     <TimeLineStyled>
       <div className="title">
         <h1>Timeline</h1>
-        <div className="title-detail">
-          <h3>ผู้ป่วย { sex ? sex : "-" } อายุ { age } ปี</h3>
-          <p>อาชีพ { job }</p>
-        </div>
+        <Grid container justify="center">
+          <Grid item xs={10} md={6} lg={6} className="title-detail">
+            <h3>ผู้ป่วย { sex ? sex : "-" } อายุ { age } ปี</h3>
+            <p>อาชีพ { job }</p>
+          </Grid>
+        </Grid>
       </div>
       <Timeline>
         {
@@ -45,7 +47,7 @@ const TimelineUI = (props: Props): JSX.Element => {
                   <span className="date">{moment(timeline.date).format('DD/MM/YYYY')}</span>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
-                  <TimelineDot />
+                  <TimelineDot color="primary" />
                   <TimelineConnector />
                 </TimelineSeparator>
                 <TimelineContent>
@@ -55,7 +57,7 @@ const TimelineUI = (props: Props): JSX.Element => {
                         return (
                           <div className="event" key={event.created}>
                             <p><span>{event.time}</span>{event.event}</p>
-                            <CloseIcon className="icon" fontSize="small" onClick={() => handleDeleteEvent(timeline, event)} />
+                            <CloseIcon style={{ fontSize: 30, fontWeight: 400 }} className="icon" fontSize="small" onClick={() => handleDeleteEvent(timeline, event)} />
                           </div>
                         )
                       })
