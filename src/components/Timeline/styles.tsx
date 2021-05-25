@@ -14,16 +14,17 @@ export const TimeLineStyled = styled.div`
       color: #ffc107;
     }
     .title .title-detail {
-      width: calc(60% - 20px);
-      height: 70px;
-      margin: 0 auto;
+      width: 100%;
+      padding: 30px;
       text-align: center;
       border-radius: 60px;
       background-color:#ffc107;
     }
     .title .title-detail h3{
+      font-family: Prompt, sans-serif;
       font-weight: 400;
-
+      line-height: 1.2;
+      font-size: 24px;
     }
     .date {
       color: #ffc107;
