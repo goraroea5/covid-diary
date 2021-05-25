@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import moment, {Moment} from 'moment'
 import { addEventTimeline } from '../../store/libs/storeSlice'
 import {Grid, Button} from '@material-ui/core';
-import {Add} from '@material-ui/icons';
+import {Add, Message} from '@material-ui/icons';
 
 import { FromTimeLine, StyledTextField, StyledDatepicker } from './styles';
 
@@ -14,13 +14,18 @@ const DetailTimeLine = () :JSX.Element=> {
   
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setEvent('')
-    const payload = {
-      date: date?.format('L'),
-      time: date?.format('HH:mm'),
-      event: event
+    if (event) {
+      const payload = {
+        date: date?.format('L'),
+        time: date?.format('HH:mm'),
+        event: event
+      }
+      dispatch(addEventTimeline(payload))
+      setEvent('')
     }
-    dispatch(addEventTimeline(payload))
+    else {
+      alert('กรุณาใส่ข้อมูลในไทมไลน์')
+    }
   }
 
   return (
